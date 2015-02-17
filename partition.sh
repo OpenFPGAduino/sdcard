@@ -43,4 +43,4 @@ t
 p
 w
 EOF
-sudo mount -o loop,offset=$((2048*512)) $1 /mnt/
+#sudo mount -o loop,offset=$((2048*512)) $1 /media/
