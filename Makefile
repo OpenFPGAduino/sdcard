@@ -2,8 +2,9 @@ SIZE = 100kB
 OBJ=img
 IMG=openfpgaduino.img
 all:
-	rm -rf $(OBJ); 
 	mkdir $(OBJ);
+	mkdir boot;
+	mkdir os;
 	dd if=/dev/zero of=$(OBJ)/$(IMG) count=$(SIZE)
 	./partition.sh $(OBJ)/$(IMG)
 image:
@@ -13,5 +14,8 @@ image:
 	sudo mount -o loop,offset=1048576 $(OBJ)/$(IMG) /media/
 	sudo cp -rf boot/* /media/ 
 	sudo umount /media/
-
+clean:
+	rm -rf boot;
+	rm -rf os;
+	rm -rf $(OBJ); 
 
