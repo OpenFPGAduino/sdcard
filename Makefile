@@ -15,7 +15,7 @@ image:
 	sudo cp -rf boot/* /media/ 
 	sudo umount /media/
 clean:
-	rm -rf boot;
-	rm -rf os;
-	rm -rf $(OBJ); 
+	sudo rm -rf boot;
+	sudo rm -rf os;
+	sudo rm -rf $(OBJ); 
 
