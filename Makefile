@@ -4,7 +4,7 @@ IMG=openfpgaduino.img
 all:
 	mkdir $(OBJ);
 	mkdir boot;
-	mkdir os;
+	ln -s ../rootfs/fs os;
 	dd if=/dev/zero of=$(OBJ)/$(IMG) count=$(SIZE)
 	./partition.sh $(OBJ)/$(IMG)
 image:
