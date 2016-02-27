@@ -16,7 +16,6 @@ if [ "${deb_local_mirror}" == "" ]; then
 fi
 
 bootsize="64M"
-deb_release="wheezy"
 
 relative_path=`dirname $0`
 
@@ -32,8 +31,8 @@ buildenv=`cd ${absolute_path}; cd ..; mkdir -p rpi/images; cd rpi; pwd`
 
 # cd ${absolute_path}
 
-rootfs="./os"
-bootfs="./boot"
+rootfs="./sdos"
+bootfs="./sdboot"
 
 today=`date +%Y%m%d`
 
@@ -106,13 +105,12 @@ mount -o bind /dev ${rootfs}/dev
 mount -o bind /dev/pts ${rootfs}/dev/pts
 mount -o bind ${delivery_path} ${rootfs}/usr/src/delivery
 
-cd ${rootfs}
-
 sync
 sleep 15
 
 # Make sure we're out of the root fs. We won't be able to unmount otherwise, and umount -l will fail silently.
-cd
+cp -rpf boot/* ${bootfs}/
+cp -rpf os/*  ${rootfs}/
 
 umount -l ${bootp}
 
