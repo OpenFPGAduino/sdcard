@@ -1,12 +1,14 @@
-OBJ=img
-all:
-	mkdir $(OBJ);
-	mkdir boot;
+all: img
+
+os:
 	ln -s ../rootfs/fs os;
-image:
+boot:
+	mkdir boot;
+img: os boot
+	mkdir img;
 	sudo ./build_sd_card.sh
 clean:
 	sudo rm -rf boot;
 	sudo rm -rf os;
-	sudo rm -rf $(OBJ); 
+	sudo rm -rf img; 
 
