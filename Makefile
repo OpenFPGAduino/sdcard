@@ -1,10 +1,10 @@
-all: img
+all:
 
 os:
 	ln -s ../rootfs/fs os;
 boot:
 	mkdir boot;
-img: os boot
+image: os boot
 	mkdir img;
 	sudo ./build_sd_card.sh
 clean:
