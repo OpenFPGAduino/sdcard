@@ -16,7 +16,6 @@ if [ "${deb_local_mirror}" == "" ]; then
 fi
 
 bootsize="64M"
-deb_release="wheezy"
 
 relative_path=`dirname $0`
 
@@ -25,8 +24,8 @@ absolute_path=`cd ${relative_path}; pwd`
 
 # cd ${absolute_path}
 
-rootfs="./os"
-bootfs="./boot"
+rootfs="./sdos"
+bootfs="./sdboot"
 
 today=`date +%Y%m%d`
 
@@ -98,13 +97,12 @@ mount -t sysfs none ${rootfs}/sys
 mount -o bind /dev ${rootfs}/dev
 mount -o bind /dev/pts ${rootfs}/dev/pts
 
-cd ${rootfs}
-
 sync
 sleep 15
 
 # Make sure we're out of the root fs. We won't be able to unmount otherwise, and umount -l will fail silently.
-cd
+cp -rpf boot/* ${bootfs}/
+cp -rpf os/*  ${rootfs}/
 
 umount -l ${bootp}
 

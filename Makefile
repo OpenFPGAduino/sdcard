@@ -1,11 +1,12 @@
-all:
+all: boot os;
 
 os:
 	ln -s ../rootfs/fs os;
 boot:
 	mkdir boot;
-image: os boot
+img:
 	mkdir img;
+image:  img
 	sudo ./build_sd_card.sh
 clean:
 	sudo rm -rf boot;
