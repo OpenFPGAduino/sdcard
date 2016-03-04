@@ -23,13 +23,6 @@ relative_path=`dirname $0`
 # locate path of this script
 absolute_path=`cd ${relative_path}; pwd`
 
-# locate path of delivery content
-delivery_path=`cd ${absolute_path}/../delivery; pwd`
-
-# define destination folder where created image file will be stored
-buildenv=`cd ${absolute_path}; cd ..; mkdir -p rpi/images; cd rpi; pwd`
-# buildenv="/tmp/rpi"
-
 # cd ${absolute_path}
 
 rootfs="./os"
@@ -104,7 +97,6 @@ mount -t proc none ${rootfs}/proc
 mount -t sysfs none ${rootfs}/sys
 mount -o bind /dev ${rootfs}/dev
 mount -o bind /dev/pts ${rootfs}/dev/pts
-mount -o bind ${delivery_path} ${rootfs}/usr/src/delivery
 
 cd ${rootfs}
 
